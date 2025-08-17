@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3 class="subtitle">
+  <a href="{{ get_url(path='/') }}">dlynkd</a>/
+</h3>
+<h1>
+  {{ section.title }}
+</h1>
+<ul>
+  <!-- If you are using pagination, section.pages will be empty.
+       You need to use the paginator object -->  
+  {% for page in section.pages %}
+  <li><span>> <a href="{{ page.permalink | safe }}">{{ page.title }}</a></span></li>
+  {% endfor %}
+</ul>
+{% endblock content %}
