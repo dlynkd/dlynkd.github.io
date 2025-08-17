@@ -5,5 +5,10 @@
   <a href="{{ get_url(path='/') }}">dlynkd</a>/<a href="{{ get_url(path='@/journal/_index.md') }}">journal</a>/
 </h3>
 <h1>{{ page.title }}</h1>
+
+{% if page.taxonomies %}
+  <small class="tag">{{ page.taxonomies.subject }} - {{ page.taxonomies.substance }}</small>
+{% endif %}
+
 {{ page.content | safe }}
 {% endblock content %}

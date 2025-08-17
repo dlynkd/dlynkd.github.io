@@ -56,6 +56,13 @@ code:not(.language-rust) {
     padding: 2px 4px;
 }
 
+.tag {
+    padding: 2px 4px;
+    font-weight: bold;
+    opacity: 35%;
+    padding: 0;
+}
+
 pre {
     padding: 6px 8px;
 }
