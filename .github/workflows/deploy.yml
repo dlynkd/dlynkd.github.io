@@ -3,7 +3,7 @@ name: Deploy Zola to GitHub Pages
 on:
   push:
     branches:
-      - main  # Trigger on push to main
+      - main
 
 jobs:
   build-and-deploy:
@@ -13,11 +13,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Install Rust and Zola
+    - name: Install Zola
       run: |
-        curl https://sh.rustup.rs -sSf | sh -s -- -y
-        source $HOME/.cargo/env
-        cargo install zola
+        wget https://github.com/getzola/zola/releases/latest/download/zola-v0.26.1-x86_64-unknown-linux-gnu.tar.gz
+        tar -xzf zola-v0.26.1-x86_64-unknown-linux-gnu.tar.gz
+        sudo mv zola /usr/local/bin/
 
     - name: Build site
       run: zola build
