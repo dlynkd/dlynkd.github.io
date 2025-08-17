@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>dlynkd</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h3 class="subtitle">
+  <a href="https://dlynkd.com">dlynkd</a>/<a href="https://dlynkd.com/journal/">journal</a>/
+</h3>
+<h1>20_07_2025</h1>
+<p><code>format!</code> macros (<code>print!, println!, eprint!, eprintln!</code>) have multiple ways to format arguments into strings. Only types with the Display trait can use format! marcos.</p>
+<p>Formatting parameters change how the argument is displayed: <code>{:x}</code> displays it as lowercase hex, <code>{:0&lt;5}</code> will pad to the right with zeros so the total length displayed is 5, etc.</p>
+<p><code>#[derive(Debug)]</code> can be used on custom types to automatically define the debug trait to provide access to the debug format parameter "<code>{:?}</code>".</p>
+<p>Use <code>impl</code> and <code>std:fmt</code> to define <code>fmt::Display</code> trait on custom types:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">use </span><span>std::fmt;
+</span><span>
+</span><span style="color:#b48ead;">struct </span><span>Point {
+</span><span>    </span><span style="color:#bf616a;">x</span><span>: </span><span style="color:#b48ead;">i32</span><span>,
+</span><span>    </span><span style="color:#bf616a;">y</span><span>: </span><span style="color:#b48ead;">i32</span><span>,
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">impl </span><span>fmt::Display </span><span style="color:#b48ead;">for </span><span>Point {
+</span><span>    </span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">fmt</span><span>(&amp;</span><span style="color:#bf616a;">self</span><span>, </span><span style="color:#bf616a;">f</span><span>: &amp;</span><span style="color:#b48ead;">mut </span><span>fmt::Formatter&lt;&#39;_&gt;) -&gt; fmt::Result {
+</span><span>        </span><span style="color:#65737e;">// write! lets you use the same formatting syntax as println!
+</span><span>        write!(f, &quot;</span><span style="color:#a3be8c;">(</span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">, </span><span style="color:#d08770;">{}</span><span style="color:#a3be8c;">)</span><span>&quot;, </span><span style="color:#bf616a;">self</span><span>.x, </span><span style="color:#bf616a;">self</span><span>.y)
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>Like Display, a lot of other formatting parameters won't work for customs types until their corresponding traits are implemented.</p>
+
+
+    </div>
+  </section>
+</body>
+
+<footer>
+  <small>Powered by Zola.</small>
+</footer>
+
+</html>
