@@ -11,19 +11,16 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
-    - name: Install Zola
-      run: |
-        wget https://github.com/getzola/zola/releases/latest/download/zola-v0.26.1-x86_64-unknown-linux-gnu.tar.gz
-        tar -xzf zola-v0.26.1-x86_64-unknown-linux-gnu.tar.gz
-        sudo mv zola /usr/local/bin/
+    - name: build_and_deploy
+      uses: shalzz/zola-deploy-action@master
 
-    - name: Build site
-      run: zola build
-
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+    env:
+      # Target branch
+      PAGES_BRANCH: gh-pages
+      # Provide personal access token
+      # TOKEN: ${{ secrets.TOKEN }}
+      # Or if publishing to the same repo, use the automatic token
+      TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      ZOLA_VERSION: "0.21.0
