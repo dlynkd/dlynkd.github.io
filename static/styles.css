@@ -38,7 +38,7 @@ body {
     color: var(--accent);
 }
 
-p {
+p, ul, ol {
     opacity: 85%;
 }
 
@@ -67,7 +67,7 @@ pre {
     padding: 6px 8px;
 }
 
-li {
+ul > li {
     list-style: none;
 }
 
