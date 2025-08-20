@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>dlynkd</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h3 class="subtitle">
+  <a href="https://dlynkd.github.io">dlynkd</a>/<a href="https://dlynkd.github.io/journal/">journal</a>/
+</h3>
+<h1>27_07_2025</h1>
+
+
+  <small class="tag">[rust] - [moderate]</small>
+
+
+<p>Use <code>Box&lt;dyn std::error::Error&gt;</code> when your function returns a <code>Result&lt;T, E&gt;</code> and <code>E</code> can be many types of errors. This is common when reading a file and deserializing.</p>
+<p>Magic strings are unnamed, hardcoded string values used in logic. They seem convenient at first but are a bad idea for a few reasons:</p>
+<ol>
+<li>Typos cause issues → runtime errors.</li>
+<li>Can't rename all occurrences easily.</li>
+<li>No autocompletion.</li>
+<li>No context — meaning is unclear, hard to maintain.</li>
+<li>No compiler checks.</li>
+</ol>
+<p>Use enums or constants where possible.</p>
+<p>For matching what would otherwise be a magic string, using an enum with a <code>match</code> block that utilizes <code>eq_ignore_ascii_case("str")</code> is a much safer and idiomatic choice.</p>
+<p>Use a path type instead of a string when working with files. It improves readability as it is clearly a file name/path, has cross-platform compatibility between UNIX systems and Windows. <code>Path</code> and <code>PathBuf</code> come with more useful APIs like <code>.exists()</code>, <code>.extension()</code>, <code>.file_name()</code>. They also have more composability in concatenating paths and offer stronger type safety.</p>
+
+
+    </div>
+  </section>
+</body>
+
+<footer>
+  <small>Powered by Zola.</small>
+</footer>
+
+</html>

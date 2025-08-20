@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'Fira Code';
+    font-style:  normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("assets/fonts/FiraCode-Regular.woff2") format("woff2"), url("assets/fonts/FiraCode-Regular.woff") format("woff");
+}
+
+@font-face {
+    font-family: 'Fira Code';
+    font-style:  normal;
+    font-weight: 800;
+    font-display: swap;
+    src: url("assets/fonts/FiraCode-Bold.woff2") format("woff2"), url("assets/fonts/FiraCode-Bold.woff") format("woff");
+}
+
+:root {
+    --backgroud: rgb(0, 2, 20);
+    --text: whitesmoke;
+    --accent: rgb(255,168,106);
+    --accent-faded: rgba(255, 168, 106, 0.75);
+    --accent-dim: rgba(255, 168, 106, 0.45);
+    --accent-code: rgba(255, 168, 106, 0.2)
+}
+
+body {
+    font-family: 'Fira Code';
+    background-color: var(--backgroud);
+    color: var(--text);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto  ;
+}
+
+.subtitle, a {
+    color: var(--accent);
+}
+
+p, ul, ol {
+    opacity: 85%;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accent-faded);
+}
+
+code:not(.language-rust) {
+    background-color: var(--accent-code);
+    color: var(--accent);
+    padding: 2px 4px;
+}
+
+.tag {
+    padding: 2px 4px;
+    font-weight: bold;
+    opacity: 35%;
+    padding: 0;
+}
+
+pre {
+    padding: 6px 8px;
+}
+
+ul > li {
+    list-style: none;
+}
+
+li > span {
+    color: var(--accent-dim);
+}
+
+footer {
+    color: var(--accent-dim);
+    position:fixed;
+    bottom:0;
+    width:100%;
+}
+
+footer > small {
+    float: right;
+    padding: 6px 12px;
+}

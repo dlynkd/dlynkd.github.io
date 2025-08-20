@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>dlynkd</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h3 class="subtitle">
+  <a href="https://dlynkd.github.io">dlynkd</a>/<a href="https://dlynkd.github.io/journal/">journal</a>/
+</h3>
+<h1>25_07_2025</h1>
+
+
+  <small class="tag">[rust] - [normal]</small>
+
+
+<p>If an enum or funtion or any other object expects an owned argument to be passed to it, you can use <code>.to_owned()</code> on a reference to pass it.</p>
+<p>On a <code>&amp;str</code>, <code>to_owned()</code> is equivalent to <code>.to-string()</code> as they would both convert to a String.</p>
+<p><code>to_owned()</code> can be used on any type with the ToOwned trait, while <code>to_string()</code> can be used on any type with the Display trait.</p>
+<p><code>&amp;self</code>, <code>&amp;mut self</code> are temporary borrows to allow access to data from the instance of the object that function is called from, usually in an <code>impl</code> block. Using <code>self</code> would transfer ownership and invalidate the original instance after the function has completed.</p>
+<p>You can make an enum alias with type keyword <code>type AliasName = VeryLongEnumNameForThings;</code></p>
+
+
+    </div>
+  </section>
+</body>
+
+<footer>
+  <small>Powered by Zola.</small>
+</footer>
+
+</html>

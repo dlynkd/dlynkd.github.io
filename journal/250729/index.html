@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>dlynkd</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h3 class="subtitle">
+  <a href="https://dlynkd.github.io">dlynkd</a>/<a href="https://dlynkd.github.io/journal/">journal</a>/
+</h3>
+<h1>29_07_2025</h1>
+
+
+  <small class="tag">[rust] - [moderate]</small>
+
+
+<p><code>mod</code> keyword is used to bring local modules into scope, <code>use</code> is just an alias for easier use in the current file.</p>
+<p>/// creates a doc comment, good for public apis or anything that might be reused or tested.</p>
+<p>You cannot have immutable references or other mutable references active at the same time as a mutable reference.</p>
+<p>You can have one, but not both:</p>
+<ol>
+<li>Any number of immutable references.</li>
+<li>One mutable reference.</li>
+</ol>
+<p>Rust will not allow you to move a value while it's still borrowed - even mutably.</p>
+<p>Function returning a reference can be ambiguous for the compiler to prove reference viability:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">longest</span><span>(</span><span style="color:#bf616a;">x</span><span>: &amp;</span><span style="color:#b48ead;">str</span><span>, </span><span style="color:#bf616a;">y</span><span>: &amp;</span><span style="color:#b48ead;">str</span><span>) -&gt; &amp;</span><span style="color:#b48ead;">str </span><span>{
+</span><span>    ...
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">let</span><span> result = {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> s1 = String::from(&quot;</span><span style="color:#a3be8c;">Hello</span><span>&quot;);
+</span><span>    </span><span style="color:#96b5b4;">longest</span><span>(&amp;s1, &amp;String::from(&quot;</span><span style="color:#a3be8c;">Bye</span><span>&quot;))
+</span><span>} </span><span style="color:#65737e;">// s1 and temporary reference are dropped here.
+</span><span>
+</span><span>println!(&quot;</span><span style="color:#d08770;">{}</span><span>&quot;, result); </span><span style="color:#65737e;">// result is now a dangling reference
+</span></code></pre>
+<p>Lifetimes are needed here to tell the compiler that the reference returned from the function is only valid for as long as the references passed to it with the same lifetime are valid. Since we don't know what reference will be returned, both will need to share the same lifetime:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">longest</span><span>&lt;</span><span style="color:#b48ead;">&#39;a</span><span>&gt;(</span><span style="color:#bf616a;">x</span><span>: &amp;</span><span style="color:#b48ead;">&#39;a str</span><span>, </span><span style="color:#bf616a;">y</span><span>: &amp;</span><span style="color:#b48ead;">&#39;a str</span><span>) -&gt; &amp;</span><span style="color:#b48ead;">&#39;a str </span><span>{
+</span><span>    </span><span style="color:#b48ead;">if</span><span> x.</span><span style="color:#96b5b4;">len</span><span>() &gt; y.</span><span style="color:#96b5b4;">len</span><span>() {
+</span><span>        x
+</span><span>    } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>        y
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>Structs can never infer lifetimes, so if a field of a struct is a ref, then a lifetime needs to be specified:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">struct </span><span>Highlight&lt;</span><span style="color:#b48ead;">&#39;a</span><span>&gt; {
+</span><span>    </span><span style="color:#bf616a;">part</span><span>: &amp;</span><span style="color:#b48ead;">&#39;a str</span><span>,
+</span><span>}
+</span></code></pre>
+<p>A new instance of highlight will not be able to outlive the &amp;str reference it holds.</p>
+<p><code>matches!</code> macro is cool - returns true if the pattern matches, false if not.</p>
+<p><code>matches!(first_letter, 'a' | 'e' | 'i' | 'o' | 'u')</code></p>
+
+
+    </div>
+  </section>
+</body>
+
+<footer>
+  <small>Powered by Zola.</small>
+</footer>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>dlynkd</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h3 class="subtitle">
+  <a href="https://dlynkd.github.io">dlynkd</a>/<a href="https://dlynkd.github.io/journal/">journal</a>/
+</h3>
+<h1>28_07_2025</h1>
+
+
+  <small class="tag">[rust] - [low]</small>
+
+
+<p>Err(()) matches an error with the unit type; Err(_) matches everything.</p>
+<p>Prefer to return early with one match statement instead of nesting them. This avoids unnecessary indentation and means error/exit conditions are handled upfront and are easier to read.</p>
+<blockquote>
+<p>This follows the "fail fast" key principle.<br />
+Easier to read and audit, reduces mental load, more idiomatic.</p>
+</blockquote>
+<p>Don't fail early when cleanup or state rollback is required before exiting, or if nested contexts need to share state/mutability, although this is usually a signal to refactor.</p>
+
+
+    </div>
+  </section>
+</body>
+
+<footer>
+  <small>Powered by Zola.</small>
+</footer>
+
+</html>

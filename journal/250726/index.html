@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>dlynkd</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      
+<h3 class="subtitle">
+  <a href="https://dlynkd.github.io">dlynkd</a>/<a href="https://dlynkd.github.io/journal/">journal</a>/
+</h3>
+<h1>26_07_2025</h1>
+
+
+  <small class="tag">[rust] - [high]</small>
+
+
+<p>Use <code>stdout().flush()</code> before <code>io::stdin()</code> so that the program doesn't wait for input before the prompt is displayed.</p>
+<p>By default, Rust buffers output. This means it collects characters in memory before showing them all at once, which helps with performance. However, if the program stops to wait for <code>stdin()</code>, the output will stay in the buffer until input is received and the program continues.</p>
+<p>An empty <code>flush()</code> is okay for learning and development, especially considering <code>flush()</code> rarely fails, but in production the error should be handled properly:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">if let </span><span>Err(e) = io::stdout().</span><span style="color:#96b5b4;">flush</span><span>() {
+</span><span>    </span><span style="color:#65737e;">// handle the error here
+</span><span>}
+</span></code></pre>
+<p>Use <code>as_str()</code> with match blocks because matching Strings is a bad idea.</p>
+<ol>
+<li><code>"add" =&gt;</code> won't match <code>String::from("add")</code> as they are different types; <code>"add"</code> is a <code>&amp;'static str</code>.</li>
+<li>Match works best with copyable values. Matching against a <code>String</code> requires a full comparison with <code>eq()</code> in the backend, which is slower, and requires <code>.to_string()</code> on every line.</li>
+<li>You lose ownership of the string or need to borrow mutably, which becomes more verbose in the match arms and is more error-prone.</li>
+</ol>
+<p>Match arms need to all return the same type.</p>
+<p><code>HashMap</code> is good for fast lookup and removals at O(1) access speed by ID. It also avoids indexing problems compared to trying to solve the same problem with a <code>Vec</code>.</p>
+<p>When using <code>impl</code> on a type and defining an <code>fn</code> for it, you need to pass <code>&amp;self</code> as a parameter; otherwise, it is considered a static method and is not callable from an instance of the type.</p>
+<p>Use <code>&amp;mut self</code> if the method changes the instance.</p>
+<p><code>remove()</code> on a <code>HashMap</code> returns an <code>Option&lt;T&gt;</code>, which is either <code>Some(T)</code> or <code>None</code>, so add an <code>is_some()</code> call and an <code>if</code>/<code>match</code> statement to cover all cases.</p>
+<p><code>HashMap::remove</code> expects to be passed a reference to the key, not the key itself — this is also more efficient, as it avoids unnecessary cloning or transferring.</p>
+
+
+    </div>
+  </section>
+</body>
+
+<footer>
+  <small>Powered by Zola.</small>
+</footer>
+
+</html>
